@@ -1,0 +1,72 @@
+{
+  "ConnectionStrings": {
+    "Connection": "Server=url;User Id=id;Password=pass;Database=database;Persist Security Info=True;",
+    // Postgre Connection String
+    // "Connection": "Host=localhost;Database=Garuda;Username=postgres;Password=@!postgres123!@",
+    "HangfireConnection": "Server=url;User Id=id;Password=pass;Database=database;Persist Security Info=True;"
+  },
+  "JwtIssuerOptions": {
+    "Issuer": "bearer",
+    "Audience": "https://localhost:44325/",
+    "secretKey": "safasf",
+    "refreshSecretKey": "safasf",
+    "expirationTime": 1800,
+    "refreshExpirationTime": 5
+  },
+  "Ldap": {
+    "DefaultUser": {
+      "Username": "a",
+      "Password": "b"
+    },
+    "LdapLibraryItems": [
+      {
+        "searchBase": "searchBase",
+        "searchFilter": "searchFilter",
+        "domain": "domain",
+        "url": "url"
+      }
+    ]
+  },
+  "FileStorageOptions": {
+    "userId": "userid",
+    "password": "pass",
+    "tenantId": "tenantid",
+    "applicationId": "applicationid",
+    "maxUploadSize": 419430400, // in bytes
+    "Host": "host",
+    "Node": "node"
+  },
+  "Extensions": {
+    "Path": "\\Extension"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "Sieve": {
+    "DefaultPageSize": 10,
+    "MaxPageSize": 0,
+    "CaseSensitive": false,
+    "ThrowExceptions": false,
+    "IgnoreNullsOnNotEqual": true
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Information"
+    },
+    "WriteTo": [
+      {
+        "Name": "RollingFile",
+        "Args": {
+          "pathFormat": "logs\\log-{Date}.txt",
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] [{SourceContext}] [{EventId}] {Message}{NewLine}{Exception}"
+        }
+      }
+    ],
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ]
+  },
+  "AllowedHosts": "*"
+}
