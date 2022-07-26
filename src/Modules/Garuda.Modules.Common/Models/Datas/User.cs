@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Garuda.Abstract.Contracts;
 using Garuda.Database.Framework;
 using Garuda.Infrastructure.Models;
+using Garuda.Infrastructure.Helpers;
 using Garuda.Modules.Common.Models.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,11 @@ namespace Garuda.Modules.Common.Models.Datas
         /// Gets or sets a value indicating whether gets or sets for Username
         /// </summary>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Username
+        /// </summary>
+        public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether gets or sets for IsActive
@@ -75,6 +81,8 @@ namespace Garuda.Modules.Common.Models.Datas
 
                 entity.Property(e => e.Username)
                 .HasMaxLength(100);
+
+                entity.Property(e => e.Password);
 
                 entity.Property(e => e.IsActive);
 
@@ -132,6 +140,17 @@ namespace Garuda.Modules.Common.Models.Datas
                         CreatedBy = Guid.Parse("81314787-537b-474f-999a-9152c9703bbb"),
                         CreatedDate = DateTime.Now,
                         Fullname = "Dermawanto",
+                    },
+                    new User
+                    {
+                        Id = Guid.Parse("784d69e6-abc3-47f9-9245-9527d6b2f17c"),
+                        Email = "vyrnvyrd@gmail.com",
+                        IsActive = true,
+                        Username = "firnafird",
+                        CreatedBy = Guid.Parse("81314787-537b-474f-999a-9152c9703bbb"),
+                        CreatedDate = DateTime.Now,
+                        Fullname = "Firna Firdiani",
+                        Password = EncryptPassword.Encrypt("Pass2020"),
                     });
             });
         }

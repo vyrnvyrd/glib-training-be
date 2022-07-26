@@ -3,15 +3,17 @@ using System;
 using Garuda.Database.PostgreSql;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Garuda.Host.Migrations
 {
     [DbContext(typeof(StorageContext))]
-    partial class StorageContextModelSnapshot : ModelSnapshot
+    [Migration("20220726081620_AddPasswordColumnOnUser")]
+    partial class AddPasswordColumnOnUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,7 +139,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("8f735cdf-bd01-4ae3-89c6-b122bdd59b8b"),
                             Code = "dash",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(807),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(6284),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Dashboard",
                             DisplayOrder = 0,
@@ -152,7 +154,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("293f7746-eac8-4bd1-9550-87347467ebd2"),
                             Code = "cr",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1398),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7648),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Create",
                             DisplayOrder = 1,
@@ -167,7 +169,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("f1e6588e-ef55-4fcd-9be2-ad71fce2e678"),
                             Code = "cp",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1410),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7684),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Create Plan",
                             DisplayOrder = 0,
@@ -182,7 +184,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("9f54020e-85c1-46fb-9da3-c6150a3e327b"),
                             Code = "cp",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1416),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7694),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Plan Mine Closure",
                             DisplayOrder = 0,
@@ -197,7 +199,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("08d3fe57-51f3-40d7-8cbc-75899871abf2"),
                             Code = "cp",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1423),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7708),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Plan Operation",
                             DisplayOrder = 1,
@@ -212,7 +214,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("77af2b15-1d76-489c-89b7-8f003d19acff"),
                             Code = "cp",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1428),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7715),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Plan Contractor",
                             DisplayOrder = 2,
@@ -227,7 +229,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("6906ffec-78d6-4631-977d-b0375351fb70"),
                             Code = "cr",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1434),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7723),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Create Actual",
                             DisplayOrder = 1,
@@ -242,7 +244,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("77118193-d70c-4e36-97a0-683b9e825569"),
                             Code = "act",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1438),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7732),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "My Activity",
                             DisplayOrder = 2,
@@ -257,7 +259,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("7f2302be-efd5-43f1-b6c9-8e8886c8460c"),
                             Code = "doc",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1442),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7744),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "My Document",
                             DisplayOrder = 3,
@@ -272,7 +274,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("d73f2bc0-8b65-46f2-9e06-9bd52e990283"),
                             Code = "doclib",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1446),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7752),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Document Library",
                             DisplayOrder = 4,
@@ -287,7 +289,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("806f809b-cdd3-4591-a553-085ac97037b9"),
                             Code = "vplan",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1463),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7790),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "View Plan",
                             DisplayOrder = 0,
@@ -302,7 +304,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("049dde67-5798-4e74-8fff-503400311161"),
                             Code = "vact",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1469),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7801),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "View Actual",
                             DisplayOrder = 1,
@@ -317,7 +319,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("f0663ca2-ffb8-42c2-b022-38479c7c84af"),
                             Code = "set",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1473),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7809),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "Profile",
                             DisplayOrder = 5,
@@ -332,7 +334,7 @@ namespace Garuda.Host.Migrations
                             Id = new Guid("5026c85e-04f4-4d65-9fd2-bff26ad90013"),
                             Code = "user",
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 496, DateTimeKind.Local).AddTicks(1479),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 217, DateTimeKind.Local).AddTicks(7819),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             DisplayName = "User Management",
                             DisplayOrder = 0,
@@ -380,7 +382,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 497, DateTimeKind.Local).AddTicks(9703),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 222, DateTimeKind.Local).AddTicks(809),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Administrator",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -389,7 +391,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 497, DateTimeKind.Local).AddTicks(9719),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 222, DateTimeKind.Local).AddTicks(855),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "QPB Administrator",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -398,7 +400,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("fa997ce4-5b76-447c-9b08-5f448f185ad3"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 497, DateTimeKind.Local).AddTicks(9724),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 222, DateTimeKind.Local).AddTicks(861),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Mine Head",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -468,7 +470,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4502),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3088),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("8f735cdf-bd01-4ae3-89c6-b122bdd59b8b"),
@@ -483,7 +485,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4543),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3133),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("8f735cdf-bd01-4ae3-89c6-b122bdd59b8b"),
@@ -498,7 +500,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4556),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3151),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("293f7746-eac8-4bd1-9550-87347467ebd2"),
@@ -513,7 +515,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4584),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3171),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("293f7746-eac8-4bd1-9550-87347467ebd2"),
@@ -528,7 +530,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4593),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3178),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("f1e6588e-ef55-4fcd-9be2-ad71fce2e678"),
@@ -543,7 +545,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4599),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3184),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("f1e6588e-ef55-4fcd-9be2-ad71fce2e678"),
@@ -558,7 +560,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4605),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3191),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("9f54020e-85c1-46fb-9da3-c6150a3e327b"),
@@ -573,7 +575,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4611),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3198),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("08d3fe57-51f3-40d7-8cbc-75899871abf2"),
@@ -588,7 +590,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4617),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3204),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("77af2b15-1d76-489c-89b7-8f003d19acff"),
@@ -603,7 +605,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4622),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3211),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("9f54020e-85c1-46fb-9da3-c6150a3e327b"),
@@ -618,7 +620,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4629),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3217),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("08d3fe57-51f3-40d7-8cbc-75899871abf2"),
@@ -633,7 +635,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4634),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3227),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("77af2b15-1d76-489c-89b7-8f003d19acff"),
@@ -648,7 +650,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4641),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3235),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("f0663ca2-ffb8-42c2-b022-38479c7c84af"),
@@ -663,7 +665,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = false,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4646),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3242),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("f0663ca2-ffb8-42c2-b022-38479c7c84af"),
@@ -678,7 +680,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = true,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4652),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3249),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             MenuId = new Guid("5026c85e-04f4-4d65-9fd2-bff26ad90013"),
@@ -693,7 +695,7 @@ namespace Garuda.Host.Migrations
                             CanUpdate = true,
                             CanView = true,
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 504, DateTimeKind.Local).AddTicks(4658),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 230, DateTimeKind.Local).AddTicks(3255),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             MenuId = new Guid("5026c85e-04f4-4d65-9fd2-bff26ad90013"),
@@ -738,7 +740,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("045a0ec7-04e9-4136-b0a6-5ef1d529ea92"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 505, DateTimeKind.Local).AddTicks(3951),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 231, DateTimeKind.Local).AddTicks(4416),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Contractor",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -747,7 +749,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("77c9ef27-2f65-473e-8b61-ff4ce9693655"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 505, DateTimeKind.Local).AddTicks(3965),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 231, DateTimeKind.Local).AddTicks(4439),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Mine Closure",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -756,7 +758,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("5db13726-605c-4a00-b1c4-d6ce3ba507b3"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 505, DateTimeKind.Local).AddTicks(3969),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 231, DateTimeKind.Local).AddTicks(4489),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Operation",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -904,7 +906,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("80f560d6-1f61-460e-95ac-ea5b9c001df5"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 510, DateTimeKind.Local).AddTicks(327),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 236, DateTimeKind.Local).AddTicks(4154),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "IMM",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -913,7 +915,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("23ebbe54-45aa-4435-935d-6fad0d650b86"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 510, DateTimeKind.Local).AddTicks(374),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 236, DateTimeKind.Local).AddTicks(4209),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Melak",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -922,7 +924,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("b1f30d87-b5a6-4fdb-9f72-76f06db7f7a5"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 510, DateTimeKind.Local).AddTicks(407),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 236, DateTimeKind.Local).AddTicks(4242),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "KTD EMB",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -931,7 +933,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("21cf75f0-c7c6-427b-a392-fce59cb50bc6"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 510, DateTimeKind.Local).AddTicks(458),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 236, DateTimeKind.Local).AddTicks(4251),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "TRUST",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -940,7 +942,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("29ec8ffc-c508-4dd5-8c3d-4675ed6af4cc"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 510, DateTimeKind.Local).AddTicks(471),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 236, DateTimeKind.Local).AddTicks(4258),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "JBG",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -949,7 +951,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("5b11f06f-426b-44f1-9023-170cb85797e3"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 510, DateTimeKind.Local).AddTicks(490),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 236, DateTimeKind.Local).AddTicks(4265),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "KTD TDM",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -958,7 +960,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("af82ee9b-e754-4cb5-ae58-213419183dcf"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 510, DateTimeKind.Local).AddTicks(506),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 236, DateTimeKind.Local).AddTicks(4276),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "GPK",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1019,7 +1021,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 513, DateTimeKind.Local).AddTicks(9804),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 239, DateTimeKind.Local).AddTicks(879),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Email = "system@system.co",
                             Fullname = "System",
@@ -1031,7 +1033,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("fa3876d9-b8ce-4029-9df6-2e8ee94a3d78"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 514, DateTimeKind.Local).AddTicks(124),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 239, DateTimeKind.Local).AddTicks(1138),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Email = "systemreserve@system.co",
                             Fullname = "System Admin Reserve",
@@ -1043,7 +1045,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("2446aa92-3c84-4072-8c5e-d8c41deac9c4"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 514, DateTimeKind.Local).AddTicks(136),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 239, DateTimeKind.Local).AddTicks(1145),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Email = "rezacodym@gmail.com",
                             Fullname = "Reza Muharam",
@@ -1055,7 +1057,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("8b3c44cb-244b-4f13-b2a0-22020ae26bc6"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 514, DateTimeKind.Local).AddTicks(143),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 239, DateTimeKind.Local).AddTicks(1150),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Email = "atthoriqgf@gmail.com",
                             Fullname = "Atthoriq",
@@ -1067,26 +1069,13 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("b5a93e5d-e159-4c69-b90d-ae3239a692d3"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 514, DateTimeKind.Local).AddTicks(151),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 239, DateTimeKind.Local).AddTicks(1155),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Email = "dermawanto_d@banpuindo.co.id",
                             Fullname = "Dermawanto",
                             IsActive = true,
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Username = "dermawanto_d"
-                        },
-                        new
-                        {
-                            Id = new Guid("784d69e6-abc3-47f9-9245-9527d6b2f17c"),
-                            CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 514, DateTimeKind.Local).AddTicks(158),
-                            DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Email = "vyrnvyrd@gmail.com",
-                            Fullname = "Firna Firdiani",
-                            IsActive = true,
-                            Password = "$2a$11$V.euh8IrN52sgej5Q7KZB.hSreXXCoyzETl2GfrAPZfi3ijhkSBbK",
-                            UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            Username = "firnafird"
                         });
                 });
 
@@ -1133,7 +1122,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("e5c455f1-f239-4f29-bebd-8bc4239e15fb"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7694),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(677),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1143,7 +1132,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("ec211d37-2400-4877-8696-62ac17faeecb"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7755),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(709),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1153,7 +1142,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("f1a56c59-0128-4799-826d-50ce44921cb6"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7763),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(716),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("fa997ce4-5b76-447c-9b08-5f448f185ad3"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1163,7 +1152,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("4b894dac-7e06-4891-8498-6521ba85dcac"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7770),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(723),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1173,7 +1162,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("145e7f39-120c-4cdd-baac-fbbd74b72a69"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7777),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(730),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("fa997ce4-5b76-447c-9b08-5f448f185ad3"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1183,7 +1172,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("10195c34-4e6d-4795-bbde-bbd17e2c1b0b"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7783),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(736),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("fa997ce4-5b76-447c-9b08-5f448f185ad3"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1193,7 +1182,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("d050c114-fc5f-45c8-a736-b0cacdfc47e6"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7788),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(742),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("1ce881eb-4ae2-4b04-83d9-7062e6cfffd5"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1203,7 +1192,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("fe9b8375-2bab-4449-88a1-efe80155054e"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 697, DateTimeKind.Local).AddTicks(7815),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 241, DateTimeKind.Local).AddTicks(748),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             GroupId = new Guid("9ee09365-b140-4bc0-a5a1-79098ddbeed7"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1304,7 +1293,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("a3f3920a-6ac6-4774-9b73-ef58c346e0df"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 703, DateTimeKind.Local).AddTicks(8409),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 245, DateTimeKind.Local).AddTicks(7493),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UnitId = new Guid("80f560d6-1f61-460e-95ac-ea5b9c001df5"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1314,7 +1303,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("8f536667-9dcb-4ec4-96a9-8397b0dbf2c6"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 703, DateTimeKind.Local).AddTicks(8444),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 245, DateTimeKind.Local).AddTicks(7540),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UnitId = new Guid("23ebbe54-45aa-4435-935d-6fad0d650b86"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1324,7 +1313,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("d280a08e-1090-4b71-8e7c-8dc391bddafc"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 703, DateTimeKind.Local).AddTicks(8451),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 245, DateTimeKind.Local).AddTicks(7546),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UnitId = new Guid("b1f30d87-b5a6-4fdb-9f72-76f06db7f7a5"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1334,7 +1323,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("00a5ad59-340c-45cb-b423-51aaab6d4ee8"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 703, DateTimeKind.Local).AddTicks(8460),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 245, DateTimeKind.Local).AddTicks(7554),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UnitId = new Guid("21cf75f0-c7c6-427b-a392-fce59cb50bc6"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1344,7 +1333,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("25ec2241-215e-4d2f-890a-88bad0f4127a"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 703, DateTimeKind.Local).AddTicks(8467),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 245, DateTimeKind.Local).AddTicks(7559),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UnitId = new Guid("29ec8ffc-c508-4dd5-8c3d-4675ed6af4cc"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1354,7 +1343,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("57d4d61b-5814-4f7f-b00f-f5b5a1026908"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 703, DateTimeKind.Local).AddTicks(8474),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 245, DateTimeKind.Local).AddTicks(7566),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UnitId = new Guid("5b11f06f-426b-44f1-9023-170cb85797e3"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
@@ -1364,7 +1353,7 @@ namespace Garuda.Host.Migrations
                         {
                             Id = new Guid("43e29254-3301-4b3c-a53b-2eaddb5aa4c3"),
                             CreatedBy = new Guid("81314787-537b-474f-999a-9152c9703bbb"),
-                            CreatedDate = new DateTime(2022, 7, 26, 15, 17, 32, 703, DateTimeKind.Local).AddTicks(8480),
+                            CreatedDate = new DateTime(2022, 7, 26, 15, 16, 12, 245, DateTimeKind.Local).AddTicks(7572),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UnitId = new Guid("af82ee9b-e754-4cb5-ae58-213419183dcf"),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
