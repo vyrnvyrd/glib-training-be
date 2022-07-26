@@ -35,6 +35,11 @@ namespace Garuda.Modules.Common.Models.Datas
         public string Username { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Username
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether gets or sets for IsActive
         /// </summary>
         public bool IsActive { get; set; }
@@ -74,6 +79,9 @@ namespace Garuda.Modules.Common.Models.Datas
                 .HasMaxLength(100);
 
                 entity.Property(e => e.Username)
+                .HasMaxLength(100);
+
+                entity.Property(e => e.Password)
                 .HasMaxLength(100);
 
                 entity.Property(e => e.IsActive);
@@ -132,6 +140,17 @@ namespace Garuda.Modules.Common.Models.Datas
                         CreatedBy = Guid.Parse("81314787-537b-474f-999a-9152c9703bbb"),
                         CreatedDate = DateTime.Now,
                         Fullname = "Dermawanto",
+                    },
+                    new User
+                    {
+                        Id = Guid.Parse("784d69e6-abc3-47f9-9245-9527d6b2f17c"),
+                        Email = "vyrnvyrd@gmail.com",
+                        IsActive = true,
+                        Username = "firnafird",
+                        CreatedBy = Guid.Parse("81314787-537b-474f-999a-9152c9703bbb"),
+                        CreatedDate = DateTime.Now,
+                        Fullname = "Firna Firdiani",
+                        Password = "2147c842e17c66dac7511400c9ff4755",
                     });
             });
         }
