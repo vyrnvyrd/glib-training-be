@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Garuda.Abstract.Contracts;
 using Garuda.Database.Framework;
 using Garuda.Infrastructure.Models;
+using Garuda.Infrastructure.Helpers;
 using Garuda.Modules.Common.Models.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -81,8 +82,7 @@ namespace Garuda.Modules.Common.Models.Datas
                 entity.Property(e => e.Username)
                 .HasMaxLength(100);
 
-                entity.Property(e => e.Password)
-                .HasMaxLength(100);
+                entity.Property(e => e.Password);
 
                 entity.Property(e => e.IsActive);
 
@@ -150,7 +150,7 @@ namespace Garuda.Modules.Common.Models.Datas
                         CreatedBy = Guid.Parse("81314787-537b-474f-999a-9152c9703bbb"),
                         CreatedDate = DateTime.Now,
                         Fullname = "Firna Firdiani",
-                        Password = "2147c842e17c66dac7511400c9ff4755",
+                        Password = EncryptPassword.Encrypt("Pass2020"),
                     });
             });
         }
