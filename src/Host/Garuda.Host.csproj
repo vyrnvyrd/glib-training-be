@@ -73,6 +73,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Garuda.Modules.BookLibrary\Garuda.Modules.BookLibrary.csproj" />
     <ProjectReference Include="..\Database\Garuda.Database.Ldap\Garuda.Database.Ldap.csproj" />
     <ProjectReference Include="..\Database\Garuda.Database.PostgreSql\Garuda.Database.PostgreSql.csproj" />
     <ProjectReference Include="..\Extension\Garuda.Extension\Garuda.Extension.csproj" />

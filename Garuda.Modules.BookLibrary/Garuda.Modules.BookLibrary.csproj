@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Database\Garuda.Database.Abstract\Garuda.Database.Abstract.csproj" />
+    <ProjectReference Include="..\src\Database\Garuda.Database.Framework\Garuda.Database.Framework.csproj" />
+    <ProjectReference Include="..\src\Infrastructure\Garuda.Infrastructure.csproj" />
+    <ProjectReference Include="..\src\Modules\Garuda.Modules.Common\Garuda.Modules.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
