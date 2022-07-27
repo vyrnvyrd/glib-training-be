@@ -17,7 +17,9 @@ using Garuda.Modules.Common.Models.Contracts;
 using Garuda.Modules.Common.Models.Datas;
 using Garuda.Modules.Email.Contracts;
 using Microsoft.AspNetCore.Http;
+using Garuda.Infrastructure.Helpers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Garuda.Modules.Auth.Services.Repositories
 {
@@ -50,64 +52,41 @@ namespace Garuda.Modules.Auth.Services.Repositories
                 _logger.LogInformation("User logging in.");
 
                 _logger.LogInformation("Getting user data from database..");
-                var ldapUserLocal = await _iStorage.GetRepository<IUserRepository>().GetData(model.Username);
-
-                if (ldapUserLocal != null)
+                var account = await _iStorage.GetRepository<IUserRepository>().GetData(model.Username);
+                if (account != null)
                 {
-                    _logger.LogInformation("Getting user data from AD..");
-                    var (ldapUserResponse, domain, error) = await _authLibrary.CheckAdUser(ldapUserLocal.Username, model.Password);
-
-                    if (ldapUserResponse != null)
+                    if (account.IsActive == false)
                     {
-                        if (ldapUserLocal.IsActive == false)
-                        {
-                            throw ErrorConstant.INACTIVE_USER;
-                        }
+                        throw ErrorConstant.INACTIVE_USER;
+                    }
+
+                    var verifyPass = EncryptPassword.VerifyPassword(model.Password, account.Password);
+
+                    if (verifyPass == true)
+                    {
+                        _logger.LogInformation("Updating user last login..");
+                        account.LastLogin = DateTime.Now;
+                        await _iStorage.GetRepository<IUserRepository>().AddOrUpdate(account);
+                        await _iStorage.SaveAsync();
 
                         // Handle Jwt
                         _logger.LogInformation("Creating user token..");
-                        var token = await _jwt.CreateTokenAsync(ldapUserLocal.Id, "Administrator", ldapUserLocal.Username, "module");
+                        var token = await _jwt.CreateTokenAsync(account.Id, "Administrator", account.Username, "module");
 
                         return new LoginResponses()
                         {
                             RefreshToken = token.RefreshToken,
                             Token = token.Token,
-                            UserId = ldapUserLocal.Id,
+                            UserId = account.Id,
                         };
-                    }
-                    else
+                    } else
                     {
-                        throw ErrorConstant.INACTIVE_USER;
+                        throw ErrorConstant.WRONG_USER;
                     }
                 }
                 else
                 {
-                    _logger.LogInformation("Getting user data from AD..");
-                    var (ldapUserResponse, domain, error) = await _authLibrary.CheckAdUser(model.Username, model.Password);
-
-                    var email = ldapUserResponse.GetAttribute("sAMAccountName").StringValue + "@" + domain;
-                    if (ldapUserResponse.GetAttributeSet().ContainsKey("mail") == true)
-                    {
-                        email = ldapUserResponse.GetAttribute("mail").StringValue;
-                    }
-
-                    ldapUserLocal = new User()
-                    {
-                        Email = email,
-                        Fullname = ldapUserResponse.GetAttribute("displayName").StringValue,
-                        Username = ldapUserResponse.GetAttribute("sAMAccountName").StringValue,
-                        IsActive = false,
-                        LastLogin = DateTime.Now,
-                    };
-
-                    _logger.LogInformation("Saving registered user to database..");
-                    await _iStorage.GetRepository<IUserRepository>().AddOrUpdate(ldapUserLocal);
-                    await _iStorage.SaveAsync();
-
-                    _logger.LogInformation("Sending email to administrator..");
-                    await SendEmail(ldapUserLocal.Username);
-                    _logger.LogInformation("Email sent.");
-                    throw ErrorConstant.INACTIVE_USER;
+                    throw ErrorConstant.WRONG_USER;
                 }
             }
             catch
