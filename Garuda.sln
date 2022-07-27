@@ -71,6 +71,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garuda.Modules.Auth", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garuda.Database.PostgreSql", "src\Database\Garuda.Database.PostgreSql\Garuda.Database.PostgreSql.csproj", "{8B58A5F3-64CA-4EFA-83E6-2F9EF0687E0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garuda.Modules.BookLibrary", "Garuda.Modules.BookLibrary\Garuda.Modules.BookLibrary.csproj", "{27E5E19F-3BF1-4E6C-AFE9-0959A3966BC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +163,10 @@ Global
 		{8B58A5F3-64CA-4EFA-83E6-2F9EF0687E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B58A5F3-64CA-4EFA-83E6-2F9EF0687E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B58A5F3-64CA-4EFA-83E6-2F9EF0687E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E5E19F-3BF1-4E6C-AFE9-0959A3966BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E5E19F-3BF1-4E6C-AFE9-0959A3966BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E5E19F-3BF1-4E6C-AFE9-0959A3966BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E5E19F-3BF1-4E6C-AFE9-0959A3966BC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,6 +201,7 @@ Global
 		{F7CCBDAB-7E4D-4926-9036-9B53E8C752C8} = {9B553B40-DDCD-4890-81F5-BFC06703420B}
 		{25EF4FDA-2BF9-44F9-966D-187416CCADAE} = {54CED449-03BA-405A-86B4-C01F242DADEE}
 		{8B58A5F3-64CA-4EFA-83E6-2F9EF0687E0D} = {88C6D9AE-B881-4939-BFD1-27FD0392CC7B}
+		{27E5E19F-3BF1-4E6C-AFE9-0959A3966BC4} = {54CED449-03BA-405A-86B4-C01F242DADEE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAB733E5-DED5-46F5-804D-A22236FE8474}
