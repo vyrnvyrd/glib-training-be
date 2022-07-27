@@ -16,6 +16,7 @@ namespace Garuda.Infrastructure.Constants
         // Untuk menampilkan Source data
         public static readonly HttpResponseLibraryException UNAUTHORIZED = new HttpResponseLibraryException(Codes.UNAUTHORIZED, "Unauthorized user", "Unauthorized");
         public static readonly HttpResponseLibraryException INACTIVE_USER = new HttpResponseLibraryException(Codes.INACTIVE, "Inactive User", "Your account is inactive.");
+        public static readonly HttpResponseLibraryException WRONG_USER = new HttpResponseLibraryException(Codes.NOT_FOUND, "Wrong User", "Incorrect Username/Password.");
 
         public static readonly HttpResponseLibraryException INVALID_SESSION = new HttpResponseLibraryException(Codes.INVALID_SESSION, "Invalid Session", "Your session is invalid");
 
