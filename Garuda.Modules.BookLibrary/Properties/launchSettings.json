@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Garuda.Modules.BookLibrary": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51362;http://localhost:51363"
+    }
+  }
+}
