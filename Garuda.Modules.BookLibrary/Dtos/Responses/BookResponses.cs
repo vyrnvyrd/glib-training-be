@@ -7,19 +7,6 @@ namespace Garuda.Modules.BookLibrary.Dtos.Responses
     public class BookResponses
     {
         /// <summary>
-        /// Gets or sets a value indicating whether gets or sets for Info Return
-        /// </summary>
-        public string Info{ get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether gets or sets for Book ID
-        /// </summary>
-        public List<BookData> Data { get; set; }
-    }
-
-    public class BookData
-    {
-        /// <summary>
         /// Gets or sets a value indicating whether gets or sets for Book ID
         /// </summary>
         public Guid Id { get; set; }

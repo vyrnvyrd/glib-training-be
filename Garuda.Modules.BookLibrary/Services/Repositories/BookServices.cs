@@ -7,6 +7,7 @@ using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.BookLibrary.Models.Contracts;
 using Garuda.Modules.BookLibrary.Models.Datas;
 using Garuda.Modules.BookLibrary.Services.Contracts;
+using Garuda.Modules.Common.Dtos.Responses;
 using Microsoft.Extensions.Logging;
 using Sieve.Models;
 using Sieve.Services;
@@ -42,7 +43,7 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
             _iLogger = iLogger;
         }
 
-        public async Task<BookResponses> GetListBook(SieveModel sieveModel)
+        public async Task<APIResponses> GetListBook(SieveModel sieveModel)
         {
             try
             {
@@ -50,23 +51,23 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
                 var books = await _iStorage.GetRepository<IBookRepository>().GetData();
                 if (books.Count() > 0)
                 {
-                    var datas = _iMapper.Map<List<Book>, List<BookData>>(books.ToList());
+                    var datas = _iMapper.Map<List<Book>, List<BookResponses>>(books.ToList());
                     var resultData = _sieve.Apply(sieveModel, datas.AsQueryable());
 
                     _iLogger.LogInformation($"Data has been fetched. with {datas.Count} data");
-                    var result = new BookResponses()
+                    var result = new APIResponses()
                     {
-                        Info = "Books available.",
-                        Data = resultData.ToList(),
+                        Messages = "Books available.",
+                        Data = (List<object>)(object)resultData.ToList(),
                     };
                     return result;
                 }
                 else
                 {
-                    var result = new BookResponses()
+                    var result = new APIResponses()
                     {
-                        Info = "No books available.",
-                        Data = new List<BookData>(),
+                        Messages = "No books available.",
+                        Data = new List<object>(),
                     };
 
                     return result;

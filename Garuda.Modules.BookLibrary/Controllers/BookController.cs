@@ -5,6 +5,7 @@ using Garuda.Infrastructure.Constants;
 using Garuda.Infrastructure.Dtos;
 using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.BookLibrary.Services.Contracts;
+using Garuda.Modules.Common.Dtos.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
@@ -33,9 +34,9 @@ namespace Garuda.Modules.BookLibrary.Controllers
         /// <summary>
         /// Get list of available books.
         /// </summary>
-        /// <returns>A <see cref="BookResponses"/> representing the asynchronous operation.</returns>
+        /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
         [HttpGet]
-        [ProducesResponseType(Codes.SUCCESS, Type = typeof(List<BookResponses>))]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(APIResponses))]
         [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
         public async Task<IActionResult> GetListBook(SieveModel model)
         {
