@@ -49,29 +49,26 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
             {
                 _iLogger.LogInformation("Getting data list book..");
                 var books = await _iStorage.GetRepository<IBookRepository>().GetData();
-                if (books.Count() > 0)
+                
+                if (books.Count() == 0)
                 {
-                    var datas = _iMapper.Map<List<Book>, List<BookResponses>>(books.ToList());
-                    var resultData = _sieve.Apply(sieveModel, datas.AsQueryable());
-
-                    _iLogger.LogInformation($"Data has been fetched. with {datas.Count} data");
-                    var result = new APIResponses()
-                    {
-                        Messages = "Books available.",
-                        Data = (List<object>)(object)resultData.ToList(),
-                    };
-                    return result;
-                }
-                else
-                {
-                    var result = new APIResponses()
+                    return new APIResponses()
                     {
                         Messages = "No books available.",
                         Data = new List<object>(),
                     };
-
-                    return result;
                 }
+
+                var datas = _iMapper.Map<List<Book>, List<BookResponses>>(books.ToList());
+                var result = _sieve.Apply(sieveModel, datas.AsQueryable());
+                _iLogger.LogInformation($"Data has been fetched. with {datas.Count} data");
+                
+                return new APIResponses()
+                {
+                    Messages = "Books available.",
+                    Data = (List<object>)(object)result.ToList(),
+                };
+
             } catch (Exception ex)
             {
                 throw ErrorConstant.BAD_REQUEST;
