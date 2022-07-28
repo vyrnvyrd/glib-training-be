@@ -4,6 +4,8 @@
 
 using Garuda.Abstract.Contracts;
 using Garuda.Modules.BookLibrary.Models.Datas;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Garuda.Modules.BookLibrary.Models.Contracts
 {
@@ -12,5 +14,10 @@ namespace Garuda.Modules.BookLibrary.Models.Contracts
     /// </summary>
     public interface IBookRepository : IRepository
     {
+        /// <summary>
+        /// Get Data
+        /// </summary>
+        /// <returns>A <see cref="Book"/> representing the asynchronous operation.</returns>
+        Task<List<Book>> GetData();
     }
 }

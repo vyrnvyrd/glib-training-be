@@ -5,11 +5,19 @@
 using Garuda.Database.Framework;
 using Garuda.Modules.BookLibrary.Models.Contracts;
 using Garuda.Modules.BookLibrary.Models.Datas;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Garuda.Modules.BookLibrary.Models.Repositories
 {
     public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
+        public async Task<List<Book>> GetData()
+        {
+            var datas = await this.dbSet.ToListAsync();
+            return datas;
+        }
     }
 }
 
