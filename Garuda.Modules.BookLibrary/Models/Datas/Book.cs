@@ -33,6 +33,26 @@ namespace Garuda.Modules.BookLibrary.Models.Datas
         public string Cover { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Synopsis
+        /// </summary>
+        public string Synopsis { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Released Date
+        /// </summary>
+        public DateTime ReleasedDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Genre
+        /// </summary>
+        public string Genre { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Total Pages
+        /// </summary>
+        public int TotalPages { get; set; }
+
+        /// <summary>
         /// Model builder to create it own model to declare field and relation.
         /// </summary>
         /// <param name="modelbuilder"></param>
@@ -52,6 +72,15 @@ namespace Garuda.Modules.BookLibrary.Models.Datas
                 .HasMaxLength(100);
 
                 entity.Property(e => e.Cover);
+
+                entity.Property(e => e.Synopsis)
+                .HasMaxLength(1000);
+
+                entity.Property(e => e.ReleasedDate);
+
+                entity.Property(e => e.Genre);
+
+                entity.Property(e => e.TotalPages);
 
                 entity.ToTable("Books");
             });
