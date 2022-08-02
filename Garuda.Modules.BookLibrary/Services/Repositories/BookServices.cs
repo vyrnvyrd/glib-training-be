@@ -16,6 +16,7 @@ using Sieve.Models;
 using Sieve.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -82,6 +83,38 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
         {
             try
             {
+                _iLogger.LogInformation($"Save Image...");
+                if (model.ImageCover != null)
+                {
+                    string fileName;
+                    try
+                    {
+                        var extension = "." + model.ImageCover.FileName.Split('.')[model.ImageCover.FileName.Split('.').Length - 1];
+                        fileName = DateTime.Now.Ticks + extension; //Create a new Name for the file due to security reasons.
+
+                        var pathBuilt = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\files");
+
+                        if (!Directory.Exists(pathBuilt))
+                        {
+                            Directory.CreateDirectory(pathBuilt);
+                        }
+
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\files",
+                           fileName);
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await model.ImageCover.CopyToAsync(stream);
+                        }
+
+                        model.Cover = fileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ErrorSaveExceptions($"Saving Image file is failed : {ex.Message}");
+                    }
+                }
+
                 _iLogger.LogInformation($"Saving Book data...");
                 var data = _iMapper.Map<CreateBookRequest, Book>(model);
                 await _iStorage.GetRepository<IBookRepository>().AddData(data);
