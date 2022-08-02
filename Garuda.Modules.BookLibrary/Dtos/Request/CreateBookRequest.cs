@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Garuda.Modules.BookLibrary.Dtos.Request
@@ -15,6 +16,12 @@ namespace Garuda.Modules.BookLibrary.Dtos.Request
         /// Gets or sets a value indicating whether gets or sets for Synopsis
         /// </summary>
         public string Synopsis { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Image Cover
+        /// </summary>
+        public IFormFile ImageCover { get; set; }
+
 
         /// <summary>
         /// Gets or sets a value indicating whether gets or sets for Cover

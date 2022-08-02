@@ -8,6 +8,7 @@ using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.BookLibrary.Services.Contracts;
 using Garuda.Modules.Common.Dtos.Responses;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 using System.Collections.Generic;
@@ -53,15 +54,31 @@ namespace Garuda.Modules.BookLibrary.Controllers
         [ProducesResponseType(Codes.SUCCESS, Type = typeof(APIResponses))]
         [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
         [ProducesResponseType(Codes.BAD_REQUEST)]
-        public async Task<IActionResult> CreateBook([FromBody] CreateBookRequest model)
+        public async Task<IActionResult> CreateBook([FromForm] CreateBookRequest model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            if (!CheckFileImage(model.ImageCover))
+            {
+                return BadRequest(new { message = "Invalid file extension" });
+            }
+
+            if (model.ImageCover.Length > 1048576)
+            {
+                return BadRequest(new { message = "Maximum allowed file size is 1MB" });
+                }
+
             var result = await _bookServices.CreateBook(model);
             return Ok(result);
+        }
+
+        private bool CheckFileImage(IFormFile file)
+        {
+            var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
+            return (extension == ".jpg" || extension == ".png");
         }
     }
 }
