@@ -19,5 +19,11 @@ namespace Garuda.Modules.BookLibrary.Models.Contracts
         /// </summary>
         /// <returns>A <see cref="Book"/> representing the asynchronous operation.</returns>
         Task<List<Book>> GetData();
+
+        /// <summary>
+        /// Add Data
+        /// </summary>
+        /// <returns>A <see cref="Book"/> representing the asynchronous operation.</returns>
+        Task AddData(Book model);
     }
 }

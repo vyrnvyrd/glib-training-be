@@ -3,6 +3,7 @@
 // </copyright>
 using Garuda.Infrastructure.Constants;
 using Garuda.Infrastructure.Dtos;
+using Garuda.Modules.BookLibrary.Dtos.Request;
 using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.BookLibrary.Services.Contracts;
 using Garuda.Modules.Common.Dtos.Responses;
@@ -41,6 +42,25 @@ namespace Garuda.Modules.BookLibrary.Controllers
         public async Task<IActionResult> GetListBook(SieveModel model)
         {
             var result = await _bookServices.GetListBook(model);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Create book.
+        /// </summary>
+        /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
+        [HttpPost]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(APIResponses))]
+        [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
+        [ProducesResponseType(Codes.BAD_REQUEST)]
+        public async Task<IActionResult> CreateBook([FromBody] CreateBookRequest model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _bookServices.CreateBook(model);
             return Ok(result);
         }
     }
