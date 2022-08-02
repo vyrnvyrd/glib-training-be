@@ -1,4 +1,6 @@
-﻿using Garuda.Modules.BookLibrary.Dtos.Responses;
+﻿using Garuda.Infrastructure.Dtos;
+using Garuda.Modules.BookLibrary.Dtos.Request;
+using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.Common.Dtos.Responses;
 using Sieve.Models;
 using System.Collections.Generic;
@@ -14,5 +16,12 @@ namespace Garuda.Modules.BookLibrary.Services.Contracts
         /// <param name="sieveModel"></param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         Task<APIResponses> GetListBook(SieveModel sieveModel);
+
+        /// <summary>
+        /// Create book
+        /// </summary>
+        /// <param name="sieveModel"></param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        Task<MessageDto> CreateBook(CreateBookRequest model);
     }
 }

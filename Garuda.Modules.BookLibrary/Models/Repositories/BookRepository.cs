@@ -18,6 +18,11 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
             var datas = await this.dbSet.ToListAsync();
             return datas;
         }
+
+        public async Task AddData(Book model)
+        {
+            var result = await this.dbSet.AddAsync(model);
+        }
     }
 }
 

@@ -3,6 +3,9 @@ using Garuda.Abstract.Contracts;
 using Garuda.Database.Ldap.Contracts;
 using Garuda.Infrastructure.Constants;
 using Garuda.Infrastructure.Contracts;
+using Garuda.Infrastructure.Dtos;
+using Garuda.Infrastructure.Errors;
+using Garuda.Modules.BookLibrary.Dtos.Request;
 using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.BookLibrary.Models.Contracts;
 using Garuda.Modules.BookLibrary.Models.Datas;
@@ -66,12 +69,29 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
                 return new APIResponses()
                 {
                     Messages = "Books available.",
-                    Data = (List<object>)(object)result.ToList(),
+                    Data = result.Cast<object>().ToList(),
                 };
 
             } catch (Exception ex)
             {
                 throw ErrorConstant.BAD_REQUEST;
+            }
+        }
+
+        public async Task<MessageDto> CreateBook(CreateBookRequest model)
+        {
+            try
+            {
+                _iLogger.LogInformation($"Saving Book data...");
+                var data = _iMapper.Map<CreateBookRequest, Book>(model);
+                await _iStorage.GetRepository<IBookRepository>().AddData(data);
+                await _iStorage.SaveAsync();
+
+                _iLogger.LogInformation($"Book Successfully Saved");
+                return new MessageDto("Data has been Saved", $"Book {data.Title} Successfully Saved");
+            } catch (Exception ex)
+            {
+                throw new ErrorSaveExceptions($"Saving Book is failed : {ex.Message}");
             }
         }
     }

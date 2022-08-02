@@ -4,6 +4,7 @@
 
 using System;
 using Garuda.Infrastructure.Contracts;
+using Garuda.Modules.BookLibrary.Mappers;
 using Garuda.Modules.BookLibrary.Services.Contracts;
 using Garuda.Modules.BookLibrary.Services.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace Garuda.Modules.Auth.Actions
         public void Execute(IServiceCollection services, IServiceProvider serviceProvider)
         {
             services.AddScoped<IBookServices, BookServices>();
+            services.AddAutoMapper(typeof(BookLibraryProfiles));
         }
     }
 }
