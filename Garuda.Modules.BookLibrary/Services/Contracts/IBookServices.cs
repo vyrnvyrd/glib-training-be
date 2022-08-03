@@ -3,6 +3,7 @@ using Garuda.Modules.BookLibrary.Dtos.Request;
 using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.Common.Dtos.Responses;
 using Sieve.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,8 +21,15 @@ namespace Garuda.Modules.BookLibrary.Services.Contracts
         /// <summary>
         /// Create book
         /// </summary>
-        /// <param name="sieveModel"></param>
+        /// <param name="model"></param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         Task<MessageDto> CreateBook(CreateBookRequest model);
+
+        /// <summary>
+        /// Update book
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        Task<MessageDto> UpdateBook(Guid id, UpdateBookRequest model);
     }
 }

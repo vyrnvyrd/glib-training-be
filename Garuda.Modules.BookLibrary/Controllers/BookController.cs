@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace Garuda.Modules.BookLibrary.Controllers
     {
         private readonly IBookServices _bookServices;
 
+        /// GET: api/books
         /// <summary>
         /// Initializes a new instance of the <see cref="BookController"/> class.
         /// </summary>
@@ -46,12 +48,13 @@ namespace Garuda.Modules.BookLibrary.Controllers
             return Ok(result);
         }
 
+        /// POST: api/books
         /// <summary>
         /// Create book.
         /// </summary>
         /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
         [HttpPost]
-        [ProducesResponseType(Codes.SUCCESS, Type = typeof(APIResponses))]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(MessageDto))]
         [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
         [ProducesResponseType(Codes.BAD_REQUEST)]
         public async Task<IActionResult> CreateBook([FromForm] CreateBookRequest model)
@@ -61,17 +64,53 @@ namespace Garuda.Modules.BookLibrary.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!CheckFileImage(model.ImageCover))
+            if (model.ImageCover != null)
             {
-                return BadRequest(new { message = "Invalid file extension" });
-            }
-
-            if (model.ImageCover.Length > 1048576)
-            {
-                return BadRequest(new { message = "Maximum allowed file size is 1MB" });
+                if (!CheckFileImage(model.ImageCover))
+                {
+                    return BadRequest(new { message = "Invalid file extension" });
                 }
 
+                if (model.ImageCover.Length > 1048576)
+                {
+                    return BadRequest(new { message = "Maximum allowed file size is 1MB" });
+                }
+            }
+
             var result = await _bookServices.CreateBook(model);
+            return Ok(result);
+        }
+
+        /// PUT: api/books/{id}
+        /// <summary>
+        /// Update book.
+        /// </summary>
+        /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
+        [HttpPut("{id}")]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(MessageDto))]
+        [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
+        [ProducesResponseType(Codes.BAD_REQUEST)]
+        public async Task<IActionResult> Update(Guid id, [FromForm] UpdateBookRequest model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (model.ImageCover != null)
+            {
+                if (!CheckFileImage(model.ImageCover))
+                {
+                    return BadRequest(new { message = "Invalid file extension" });
+                }
+
+                if (model.ImageCover.Length > 1048576)
+                {
+                    return BadRequest(new { message = "Maximum allowed file size is 1MB" });
+                }
+            }
+
+            var result = await _bookServices.UpdateBook(id, model);
             return Ok(result);
         }
 

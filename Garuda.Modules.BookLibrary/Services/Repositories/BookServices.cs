@@ -127,5 +127,55 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
                 throw new ErrorSaveExceptions($"Saving Book is failed : {ex.Message}");
             }
         }
+
+        public async Task<MessageDto> UpdateBook(Guid id,UpdateBookRequest model)
+        {
+            try
+            {
+                _iLogger.LogInformation($"Save Image...");
+                if (model.ImageCover != null)
+                {
+                    string fileName;
+                    try
+                    {
+                        var extension = "." + model.ImageCover.FileName.Split('.')[model.ImageCover.FileName.Split('.').Length - 1];
+                        fileName = DateTime.Now.Ticks + extension; //Create a new Name for the file due to security reasons.
+
+                        var pathBuilt = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\files");
+
+                        if (!Directory.Exists(pathBuilt))
+                        {
+                            Directory.CreateDirectory(pathBuilt);
+                        }
+
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\files",
+                           fileName);
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await model.ImageCover.CopyToAsync(stream);
+                        }
+
+                        model.Cover = fileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ErrorSaveExceptions($"Saving Image file is failed : {ex.Message}");
+                    }
+                }
+
+                _iLogger.LogInformation($"Update Book data...");
+                var data = _iMapper.Map<UpdateBookRequest, Book>(model);
+                await _iStorage.GetRepository<IBookRepository>().UpdateData(id, data);
+                await _iStorage.SaveAsync();
+
+                _iLogger.LogInformation($"Book Successfully Updated");
+                return new MessageDto("Data has been Updated", $"Book {data.Title} Successfully Updated");
+            }
+            catch (Exception ex)
+            {
+                throw new ErrorSaveExceptions($"Updating Book is failed : {ex.Message}");
+            }
+        }
     }
 }
