@@ -114,6 +114,21 @@ namespace Garuda.Modules.BookLibrary.Controllers
             return Ok(result);
         }
 
+        /// DELETE: api/books/{id}
+        /// <summary>
+        /// Update book.
+        /// </summary>
+        /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(MessageDto))]
+        [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
+        [ProducesResponseType(Codes.BAD_REQUEST)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _bookServices.DeleteBook(id);
+            return Ok(result);
+        }
+
         private bool CheckFileImage(IFormFile file)
         {
             var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];

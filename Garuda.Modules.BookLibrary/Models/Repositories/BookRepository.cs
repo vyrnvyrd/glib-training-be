@@ -8,6 +8,7 @@ using Garuda.Modules.BookLibrary.Models.Datas;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Garuda.Modules.BookLibrary.Models.Repositories
@@ -16,7 +17,7 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
     {
         public async Task<List<Book>> GetData()
         {
-            var datas = await this.dbSet.ToListAsync();
+            var datas = await this.dbSet.Where(x => x.DeletedDate == null).ToListAsync();
             return datas;
         }
 
@@ -38,6 +39,15 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
                 data.Genre = model.Genre;
                 data.TotalPages = model.TotalPages;
                 this.dbSet.Update(data);
+            }
+        }
+
+        public async Task DeleteData(Guid id)
+        {
+            var data = await this.dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            if (data != null)
+            {
+                var result = this.dbSet.Remove(data);
             }
         }
     }

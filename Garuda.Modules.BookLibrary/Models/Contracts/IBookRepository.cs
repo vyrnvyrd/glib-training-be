@@ -32,5 +32,11 @@ namespace Garuda.Modules.BookLibrary.Models.Contracts
         /// </summary>
         /// <returns>A <see cref="Book"/> representing the asynchronous operation.</returns>
         Task UpdateData(Guid id, Book model);
+
+        /// <summary>
+        /// Delete Data
+        /// </summary>
+        /// <returns>A <see cref="Book"/> representing the asynchronous operation.</returns>
+        Task DeleteData(Guid id);
     }
 }

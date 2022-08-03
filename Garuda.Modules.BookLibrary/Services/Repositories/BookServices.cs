@@ -177,5 +177,22 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
                 throw new ErrorSaveExceptions($"Updating Book is failed : {ex.Message}");
             }
         }
+
+        public async Task<MessageDto> DeleteBook(Guid id)
+        {
+            try
+            {
+                _iLogger.LogInformation($"Delete Book data...");
+                await _iStorage.GetRepository<IBookRepository>().DeleteData(id);
+                await _iStorage.SaveAsync();
+
+                _iLogger.LogInformation($"Book Successfully Deleted");
+                return new MessageDto("Data has been Deleted", $"Book Successfully Deleted");
+            }
+            catch (Exception ex)
+            {
+                throw new ErrorSaveExceptions($"Delete Book is failed : {ex.Message}");
+            }
+        }
     }
 }
