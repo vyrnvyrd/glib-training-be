@@ -17,6 +17,7 @@ namespace Garuda.Modules.BookLibrary.Mappers
         {
             CreateMap<Book, BookResponses>().ReverseMap();
             CreateMap<Book, CreateBookRequest>().ReverseMap();
+            CreateMap<Book, UpdateBookRequest>().ReverseMap();
         }
     }
 }
