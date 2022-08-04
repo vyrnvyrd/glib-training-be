@@ -48,11 +48,29 @@ namespace Garuda.Modules.BookLibrary.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get book by id.
+        /// </summary>
+        /// <returns>A <see cref="BookDetailResponses"/> representing the asynchronous operation.</returns>
+        [HttpGet("{id}")]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(BookDetailResponses))]
+        [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
+        public async Task<IActionResult> GetBookById(Guid id)
+        {
+            var result = await _bookServices.GetBookById(id);
+            if (result == null)
+            {
+                return NotFound(ErrorConstant.NOT_FOUND);
+            }
+
+            return Ok(result);
+        }
+
         /// POST: api/books
         /// <summary>
         /// Create book.
         /// </summary>
-        /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
+        /// <returns>A <see cref="MessageDto"/> representing the asynchronous operation.</returns>
         [HttpPost]
         [ProducesResponseType(Codes.SUCCESS, Type = typeof(MessageDto))]
         [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
@@ -85,7 +103,7 @@ namespace Garuda.Modules.BookLibrary.Controllers
         /// <summary>
         /// Update book.
         /// </summary>
-        /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
+        /// <returns>A <see cref="MessageDto"/> representing the asynchronous operation.</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(Codes.SUCCESS, Type = typeof(MessageDto))]
         [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
@@ -118,7 +136,7 @@ namespace Garuda.Modules.BookLibrary.Controllers
         /// <summary>
         /// Update book.
         /// </summary>
-        /// <returns>A <see cref="APIResponses"/> representing the asynchronous operation.</returns>
+        /// <returns>A <see cref="MessageDto"/> representing the asynchronous operation.</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(Codes.SUCCESS, Type = typeof(MessageDto))]
         [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
