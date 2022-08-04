@@ -21,6 +21,12 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
             return datas;
         }
 
+        public async Task<Book> GetData(Guid id)
+        {
+            var datas = await this.dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            return datas;
+        }
+
         public async Task AddData(Book model)
         {
             await this.dbSet.AddAsync(model);

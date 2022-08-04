@@ -79,6 +79,22 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
             }
         }
 
+        public async Task<BookDetailResponses> GetBookById(Guid id)
+        {
+            try
+            {
+                _iLogger.LogInformation($"Get book by id...");
+                var data = await _iStorage.GetRepository<IBookRepository>().GetData(id);
+                var dataMapper = _iMapper.Map<Book, BookDetailResponses>(data);
+
+                return dataMapper;
+
+            } catch (Exception ex)
+            {
+                throw new ErrorSaveExceptions($"Get Book by Id is failed : {ex.Message}");
+            }
+        }
+
         public async Task<MessageDto> CreateBook(CreateBookRequest model)
         {
             try

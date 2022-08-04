@@ -19,6 +19,13 @@ namespace Garuda.Modules.BookLibrary.Services.Contracts
         Task<APIResponses> GetListBook(SieveModel sieveModel);
 
         /// <summary>
+        /// Get book by id
+        /// </summary>
+        /// <param name="sieveModel"></param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        Task<BookDetailResponses> GetBookById(Guid id);
+
+        /// <summary>
         /// Create book
         /// </summary>
         /// <param name="model"></param>
