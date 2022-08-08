@@ -41,6 +41,21 @@ namespace Garuda.Modules.Common.Models.Datas
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Birthdate
+        /// </summary>
+        public DateTime BirthDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Address
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Privacy Policy
+        /// </summary>
+        public string PrivacyPolicy { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether gets or sets for IsActive
         /// </summary>
         public bool IsActive { get; set; }
@@ -83,6 +98,13 @@ namespace Garuda.Modules.Common.Models.Datas
                 .HasMaxLength(100);
 
                 entity.Property(e => e.Password);
+
+                entity.Property(e => e.BirthDate);
+
+                entity.Property(e => e.Address)
+                .HasMaxLength(500);
+
+                entity.Property(e => e.PrivacyPolicy);
 
                 entity.Property(e => e.IsActive);
 
