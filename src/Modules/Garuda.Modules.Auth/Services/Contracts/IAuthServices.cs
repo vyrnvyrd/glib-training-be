@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using Garuda.Infrastructure.Dtos;
+using Garuda.Modules.Common;
 using Garuda.Modules.Common.Dtos.Requests;
 using Garuda.Modules.Common.Dtos.Responses;
 using Microsoft.AspNetCore.Http;
@@ -37,5 +38,13 @@ namespace Garuda.Modules.Auth.Services.Contracts
         /// <param name="model"></param>
         /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
         Task<SessionTokenDto> GetRefreshToken(HttpContext httpContext, RefreshTokenRequests model);
+
+        /// <summary>
+        /// Register new user
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="model"></param>
+        /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
+        Task<LoginResponses> RegisterUser(RegisterRequests model);
     }
 }

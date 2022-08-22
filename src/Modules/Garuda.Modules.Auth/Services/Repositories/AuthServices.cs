@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Http;
 using Garuda.Infrastructure.Helpers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Garuda.Modules.Common;
+using AutoMapper;
 
 namespace Garuda.Modules.Auth.Services.Repositories
 {
@@ -30,6 +32,7 @@ namespace Garuda.Modules.Auth.Services.Repositories
         private readonly ILogger _logger;
         private readonly IJwtFactory _jwt;
         private readonly IEmailSender _emailSender;
+        private readonly IMapper _iMapper;
 
         public AuthServices(
             IStorage iStorage,
@@ -163,6 +166,48 @@ namespace Garuda.Modules.Auth.Services.Repositories
         private async Task SendEmail(string username)
         {
             await _emailSender.SendEmailToQpbAdminAsync("Account Activation", username, true);
+        }
+
+
+
+        public async Task<LoginResponses> RegisterUser(RegisterRequests model)
+        {
+            try
+            {
+                _logger.LogInformation("Getting user data..");
+                var dataUser = await _iStorage.GetRepository<IUserRepository>().GetData(model.Username);
+                if (dataUser != null)
+                {
+                    throw ErrorConstant.USERNAME_EXIST;
+                }
+
+                _logger.LogInformation("Register user to database..");
+                var dataMapper = new User
+                {
+                    Address = model.Address,
+                    Fullname = model.FullName,
+                    Username = model.Username,
+                    Password = EncryptPassword.Encrypt(model.Password),
+                    Email = model.Email,
+                    BirthDate = model.BirthDate,
+                    PrivacyPolicy = model.PrivacyPolicy,
+                    IsActive = true,
+                };
+                await _iStorage.GetRepository<IUserRepository>().AddOrUpdate(dataMapper);
+                await _iStorage.SaveAsync();
+
+                var dataLogin = new LoginRequests
+                {
+                    Username = model.Username,
+                    Password = model.Password,
+                };
+
+                return await Login(dataLogin);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

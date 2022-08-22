@@ -17,6 +17,7 @@ namespace Garuda.Infrastructure.Constants
         public static readonly HttpResponseLibraryException UNAUTHORIZED = new HttpResponseLibraryException(Codes.UNAUTHORIZED, "Unauthorized user", "Unauthorized");
         public static readonly HttpResponseLibraryException INACTIVE_USER = new HttpResponseLibraryException(Codes.INACTIVE, "Inactive User", "Your account is inactive.");
         public static readonly HttpResponseLibraryException WRONG_USER = new HttpResponseLibraryException(Codes.NOT_FOUND, "Wrong User", "Incorrect Username/Password.");
+        public static readonly HttpResponseLibraryException USERNAME_EXIST = new HttpResponseLibraryException(Codes.USERNAME_EXIST, "Username Exist", "Username already exists");
 
         public static readonly HttpResponseLibraryException INVALID_SESSION = new HttpResponseLibraryException(Codes.INVALID_SESSION, "Invalid Session", "Your session is invalid");
 
