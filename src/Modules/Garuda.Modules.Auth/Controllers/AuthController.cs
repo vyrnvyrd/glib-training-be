@@ -9,6 +9,7 @@ using Garuda.Infrastructure.Dtos.Responses;
 using Garuda.Infrastructure.Exceptions;
 using Garuda.Infrastructure.Helpers;
 using Garuda.Modules.Auth.Services.Contracts;
+using Garuda.Modules.Common;
 using Garuda.Modules.Common.Dtos.Requests;
 using Garuda.Modules.Common.Dtos.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Garuda.Modules.Auth.Controllers
 {
     [Route("api/auth")]
+    [Produces("application/json")]
     public class AuthController : Controller
     {
         private readonly IAuthServices _authServices;
@@ -89,6 +91,26 @@ namespace Garuda.Modules.Auth.Controllers
         public async Task<IActionResult> GetRefreshToken([FromBody] RefreshTokenRequests model)
         {
             var result = await _authServices.GetRefreshToken(HttpContext, model);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Register User.
+        /// </summary>
+        /// <param name="model">
+        /// </param>
+        [HttpPost]
+        [Route("register")]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(LoginResponses))]
+        [ProducesResponseType(Codes.USERNAME_EXIST, Type = typeof(MessageDto))]
+        public async Task<IActionResult> Register([FromBody] RegisterRequests model)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw ErrorConstant.BAD_REQUEST;
+            }
+
+            var result = await _authServices.RegisterUser(model);
             return Ok(result);
         }
     }

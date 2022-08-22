@@ -18,6 +18,9 @@ namespace Garuda.Infrastructure.Constants
         // Validation Entity/Model
         public const int BAD_REQUEST = 400;
 
+        // If theres any duplicate data error on Save
+        public const int USERNAME_EXIST = 402;
+
         // Unauthorized
         public const int UNAUTHORIZED = 401;
 
