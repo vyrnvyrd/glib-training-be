@@ -7,6 +7,7 @@ using Garuda.Database.Framework;
 using Garuda.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Garuda.Modules.BookLibrary.Models.Datas
 {
@@ -51,6 +52,11 @@ namespace Garuda.Modules.BookLibrary.Models.Datas
         /// Gets or sets a value indicating whether gets or sets for Total Pages
         /// </summary>
         public int TotalPages { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Borrowed Book
+        /// </summary>
+        public IList<BorrowedBook> BorrowedBooks { get; set; } = new List<BorrowedBook>();
 
         /// <summary>
         /// Model builder to create it own model to declare field and relation.
