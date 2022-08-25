@@ -54,6 +54,11 @@ namespace Garuda.Modules.BookLibrary.Models.Datas
         public int TotalPages { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether gets or sets for Stock
+        /// </summary>
+        public int Stock { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether gets or sets for Borrowed Book
         /// </summary>
         public IList<BorrowedBook> BorrowedBooks { get; set; } = new List<BorrowedBook>();
@@ -87,6 +92,8 @@ namespace Garuda.Modules.BookLibrary.Models.Datas
                 entity.Property(e => e.Genre);
 
                 entity.Property(e => e.TotalPages);
+
+                entity.Property(e => e.Stock);
 
                 entity.ToTable("Books");
             });
