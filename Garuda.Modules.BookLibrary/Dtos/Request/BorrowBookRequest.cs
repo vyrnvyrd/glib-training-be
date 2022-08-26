@@ -31,11 +31,6 @@ namespace Garuda.Modules.BookLibrary.Dtos.Request
         public DateTime DueDate { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether gets or sets for Returned Date
-        /// </summary>
-        public DateTime ReturnedDate { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether gets or sets for Returned Quantity
         /// </summary>
         public int ReturnedQuantity { get; set; }
