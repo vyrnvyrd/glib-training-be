@@ -30,9 +30,10 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
             }
 
             data.BorrowedDate = model.BorrowedDate;
-            data.BorrowedQuantity = model.BorrowedQuantity;
+            data.BorrowedQuantity = model.BorrowedQuantity + data.BorrowedQuantity;
             data.DueDate = model.DueDate;
             data.ReturnedDate = model.ReturnedDate;
+            data.ReturnedQuantity = model.ReturnedQuantity + data.ReturnedQuantity;
             data.Remarks = model.Remarks;
             this.dbSet.Update(data);
         }

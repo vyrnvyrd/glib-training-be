@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Garuda.Abstract.Contracts;
 using Garuda.Database.Ldap.Contracts;
+using Garuda.Infrastructure.Constants;
 using Garuda.Infrastructure.Contracts;
 using Garuda.Infrastructure.Dtos;
 using Garuda.Infrastructure.Errors;
+using Garuda.Infrastructure.Exceptions;
 using Garuda.Modules.BookLibrary.Dtos.Request;
 using Garuda.Modules.BookLibrary.Models.Contracts;
 using Garuda.Modules.BookLibrary.Models.Datas;
@@ -56,24 +58,41 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
                         total = total + datas[i].BorrowedQuantity;
                     }
 
-                    if (total > 5)
+                    if (total >= 5)
                     {
-                        throw new ErrorSaveExceptions($"Customer cannot borrow more than 5 books. Currently, customer {dataUser.Fullname} have borrowed {total} books");
+                        throw new HttpResponseLibraryException(Codes.NOT_ACCEPTABLE, "Not Acceptable", $"Customer cannot borrow more than 5 books. Currently, customer {dataUser.Fullname} have borrowed {total} books");
                     }
 
                     if (total + model.BorrowedQuantity > 5)
                     {
-                        throw new ErrorSaveExceptions($"Customer cannot borrow more than 5 books. Currently, customer {dataUser.Fullname} have borrowed {total} books");
+                        throw new HttpResponseLibraryException(Codes.NOT_ACCEPTABLE, "Not Acceptable", $"Customer cannot borrow more than 5 books. Currently, customer {dataUser.Fullname} have borrowed {total} books. Proposed loan: {model.BorrowedQuantity}");
+                    }
+                }
+
+                _iLogger.LogInformation($"Check Book Stock...");
+                Book dataBook = await _iStorage.GetRepository<IBookRepository>().GetData(model.BookId);
+                if (dataBook != null)
+                {
+                    if (model.BorrowedQuantity > dataBook.Stock)
+                    {
+                        throw new HttpResponseLibraryException(Codes.NOT_ACCEPTABLE, "Not Acceptable", $"Insufficient stock of books! remaining books : {dataBook.Stock}");
                     }
                 }
 
                 _iLogger.LogInformation($"Add or Update Borrowed Book...");
                 var dataMapping = _iMapper.Map<BorrowBookRequest, BorrowedBook>(model);
                 await _iStorage.GetRepository<IBorrowedBookRepository>().AddOrUpdateData(dataMapping);
+                await _iStorage.SaveAsync();
+
+                _iLogger.LogInformation($"Update Book Stock...");
+                dataBook.Stock = dataBook.Stock - model.BorrowedQuantity;
+                await _iStorage.GetRepository<IBookRepository>().UpdateData(dataBook.Id, dataBook);
+                await _iStorage.SaveAsync();
+
                 return new MessageDto("Data has been Updated", $"Book Successfully Borrowed");
-            } catch (Exception ex)
+            } catch
             {
-                throw new ErrorSaveExceptions($"Borrow Book is failed : {ex.Message}");
+                throw;
             }
         }
     }

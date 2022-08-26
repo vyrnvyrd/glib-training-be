@@ -18,9 +18,9 @@ namespace Garuda.Modules.BookLibrary.Controllers
 
         /// GET: api/books
         /// <summary>
-        /// Initializes a new instance of the <see cref="BookController"/> class.
+        /// Initializes a new instance of the <see cref="BorrowedBookController"/> class.
         /// </summary>
-        /// <param name="bookServices"></param>
+        /// <param name="borrowedBookServices"></param>
         public BorrowedBookController(
             IBorrowedBookServices borrowedBookServices)
         {
