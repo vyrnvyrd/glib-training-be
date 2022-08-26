@@ -24,6 +24,9 @@ namespace Garuda.Infrastructure.Constants
         // Unauthorized
         public const int UNAUTHORIZED = 401;
 
+        // Not Acceptable
+        public const int NOT_ACCEPTABLE = 406;
+
         // User Inactive
         public const int INACTIVE = 4011;
 

@@ -18,6 +18,7 @@ namespace Garuda.Modules.Auth.Actions
         public void Execute(IServiceCollection services, IServiceProvider serviceProvider)
         {
             services.AddScoped<IBookServices, BookServices>();
+            services.AddScoped<IBorrowedBookServices, BorrowedBookServices>();
             services.AddAutoMapper(typeof(BookLibraryProfiles));
         }
     }
