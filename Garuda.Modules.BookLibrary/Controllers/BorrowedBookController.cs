@@ -47,5 +47,25 @@ namespace Garuda.Modules.BookLibrary.Controllers
             return Ok(result);
         }
 
+        /// POST: api/borrow-book/return
+        /// <summary>
+        /// Return book.
+        /// </summary>
+        /// <returns>A <see cref="MessageDto"/> representing the asynchronous operation.</returns>
+        [HttpPost]
+        [Route("return")]
+        [ProducesResponseType(Codes.SUCCESS, Type = typeof(MessageDto))]
+        [ProducesResponseType(Codes.NOT_FOUND, Type = typeof(MessageDto))]
+        [ProducesResponseType(Codes.BAD_REQUEST)]
+        public async Task<IActionResult> Return([FromBody] ReturnBookRequest model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _borrowedBookServices.ReturnBorrowBook(model);
+            return Ok(result);
+        }
     }
 }

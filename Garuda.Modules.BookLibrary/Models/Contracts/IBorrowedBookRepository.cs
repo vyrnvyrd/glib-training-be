@@ -16,15 +16,27 @@ namespace Garuda.Modules.BookLibrary.Models.Contracts
     public interface IBorrowedBookRepository : IRepository
     {
         /// <summary>
-        /// Add or Update Data
+        /// Get list borrowed book by customer id
         /// </summary>
         /// <returns>A <see cref="BorrowedBook"/> representing the asynchronous operation.</returns>
         Task<List<BorrowedBook>> GetData(Guid CustomerId);
+
+        /// <summary>
+        /// Get data by book id and customer id
+        /// </summary>
+        /// <returns>A <see cref="BorrowedBook"/> representing the asynchronous operation.</returns>
+        Task<BorrowedBook> GetData(Guid BookId, Guid CustomerId);
 
         /// <summary>
         /// Add or Update Data
         /// </summary>
         /// <returns>A <see cref="BorrowedBook"/> representing the asynchronous operation.</returns>
         Task AddOrUpdateData(BorrowedBook model);
+
+        /// <summary>
+        /// Update Return Book Data
+        /// </summary>
+        /// <returns>A <see cref="BorrowedBook"/> representing the asynchronous operation.</returns>
+        Task UpdateReturnBookData(BorrowedBook model);
     }
 }

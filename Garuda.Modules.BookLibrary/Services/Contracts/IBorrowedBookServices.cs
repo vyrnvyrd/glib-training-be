@@ -12,5 +12,12 @@ namespace Garuda.Modules.BookLibrary.Services.Contracts
         /// <param name="model"></param>
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         Task<MessageDto> CreateOrUpdateBorrowBook(BorrowBookRequest model);
+
+        /// <summary>
+        /// Return borrow book
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+        Task<MessageDto> ReturnBorrowBook(ReturnBookRequest model);
     }
 }

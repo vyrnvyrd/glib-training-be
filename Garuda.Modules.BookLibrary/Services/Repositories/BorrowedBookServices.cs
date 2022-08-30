@@ -95,5 +95,36 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
                 throw;
             }
         }
+
+        public async Task<MessageDto> ReturnBorrowBook(ReturnBookRequest model) 
+        {
+            try
+            {
+                _iLogger.LogInformation($"Check Existing Quantity Borrowed Book...");
+                var datas = await _iStorage.GetRepository<IBorrowedBookRepository>().GetData(model.BookId, model.CustomerId);
+                if (datas != null)
+                {
+                    if (datas.BorrowedQuantity != model.ReturnedQuantity)
+                    {
+                        throw new HttpResponseLibraryException(Codes.NOT_ACCEPTABLE, "Not Acceptable", $"Returned quantity should be the same as borrowed quantity");
+                    }
+                }
+                _iLogger.LogInformation($"Add or Update Borrowed Book...");
+                var dataMapping = _iMapper.Map<ReturnBookRequest, BorrowedBook>(model);
+                await _iStorage.GetRepository<IBorrowedBookRepository>().UpdateReturnBookData(dataMapping);
+                await _iStorage.SaveAsync();
+
+                _iLogger.LogInformation($"Update Book Stock...");
+                Book dataBook = await _iStorage.GetRepository<IBookRepository>().GetData(model.BookId);
+                dataBook.Stock = dataBook.Stock + model.ReturnedQuantity;
+                await _iStorage.GetRepository<IBookRepository>().UpdateData(dataBook.Id, dataBook);
+                await _iStorage.SaveAsync();
+
+                return new MessageDto("Data has been Updated", $"Book Successfully Returned");
+            } catch
+            {
+                throw;
+            }
+        }
     }
 }
