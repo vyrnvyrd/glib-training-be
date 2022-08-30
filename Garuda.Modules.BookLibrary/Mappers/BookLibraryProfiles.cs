@@ -20,6 +20,7 @@ namespace Garuda.Modules.BookLibrary.Mappers
             CreateMap<Book, UpdateBookRequest>().ReverseMap();
             CreateMap<Book, BookDetailResponses>().ReverseMap();
             CreateMap<BorrowedBook, BorrowBookRequest>().ReverseMap();
+            CreateMap<BorrowedBook, ReturnBookRequest>().ReverseMap();
         }
     }
 }

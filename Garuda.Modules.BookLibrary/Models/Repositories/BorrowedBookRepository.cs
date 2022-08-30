@@ -20,9 +20,14 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
             return await this.dbSet.Where(x => x.CustomerId == CustomerId).ToListAsync();
         }
 
+        public async Task<BorrowedBook> GetData(Guid BookId, Guid CustomerId)
+        {
+            return await this.dbSet.FirstOrDefaultAsync(x => x.BookId == BookId && x.CustomerId == CustomerId);
+        }
+
         public async Task AddOrUpdateData(BorrowedBook model)
         {
-            var data = await this.dbSet.FirstOrDefaultAsync(x => x.BookId == model.BookId && x.CustomerId == model.CustomerId);
+            var data = await GetData(model.BookId, model.CustomerId);
             if (data == null)
             {
                 await this.dbSet.AddAsync(model);
@@ -34,6 +39,15 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
             data.DueDate = model.DueDate;
             data.ReturnedQuantity += model.ReturnedQuantity;
             data.Remarks = model.Remarks;
+            this.dbSet.Update(data);
+        }
+
+        public async Task UpdateReturnBookData(BorrowedBook model)
+        {
+            var data = await GetData(model.BookId, model.CustomerId);
+
+            data.ReturnedQuantity = model.ReturnedQuantity;
+            data.ReturnedDate = model.ReturnedDate;
             this.dbSet.Update(data);
         }
     }
