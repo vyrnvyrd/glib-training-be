@@ -63,7 +63,7 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
                     };
                 }
 
-                var overdueBooks = borrowedBooks.Where(x => x.DueDate >= DateTime.Now)
+                var overdueBooks = borrowedBooks.Where(x => x.DueDate <= DateTime.Now)
                                                 .OrderBy(x => x.DueDate)
                                                 .Select(x => new OverdueBookResponses()
                                                 {
