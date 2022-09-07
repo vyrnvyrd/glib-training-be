@@ -15,6 +15,11 @@ namespace Garuda.Modules.BookLibrary.Models.Repositories
 {
     public class BorrowedBookRepository : RepositoryBase<BorrowedBook>, IBorrowedBookRepository
     {
+        public async Task<List<BorrowedBook>> GetData()
+        {
+            return await this.dbSet.Include(x => x.Book).Include(x => x.Customer).Where(x => x.DeletedDate == null).ToListAsync();
+        }
+
         public async Task<List<BorrowedBook>> GetData(Guid CustomerId)
         {
             return await this.dbSet.Where(x => x.CustomerId == CustomerId).ToListAsync();

@@ -7,13 +7,18 @@ using Garuda.Infrastructure.Dtos;
 using Garuda.Infrastructure.Errors;
 using Garuda.Infrastructure.Exceptions;
 using Garuda.Modules.BookLibrary.Dtos.Request;
+using Garuda.Modules.BookLibrary.Dtos.Responses;
 using Garuda.Modules.BookLibrary.Models.Contracts;
 using Garuda.Modules.BookLibrary.Models.Datas;
 using Garuda.Modules.BookLibrary.Services.Contracts;
+using Garuda.Modules.Common.Dtos.Responses;
 using Garuda.Modules.Common.Models.Contracts;
 using Microsoft.Extensions.Logging;
+using Sieve.Models;
 using Sieve.Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Garuda.Modules.BookLibrary.Services.Repositories
@@ -41,6 +46,49 @@ namespace Garuda.Modules.BookLibrary.Services.Repositories
             _jwt = jwt;
             _iLogger = iLogger;
         }
+
+        public async Task<APIResponses> GetListOverdueBook(SieveModel sieveModel)
+        {
+            try
+            {
+                _iLogger.LogInformation("Getting data list book..");
+                var borrowedBooks = await _iStorage.GetRepository<IBorrowedBookRepository>().GetData();
+
+                if (borrowedBooks.Count() == 0)
+                {
+                    return new APIResponses()
+                    {
+                        Messages = "No books available.",
+                        Data = new List<object>(),
+                    };
+                }
+
+                var overdueBooks = borrowedBooks.Where(x => x.DueDate <= DateTime.Now)
+                                                .OrderBy(x => x.DueDate)
+                                                .Select(x => new OverdueBookResponses()
+                                                {
+                                                    Id = x.Id,
+                                                    Title = x.Book.Title,
+                                                    CustomerName = x.Customer.Fullname,
+                                                    DueDate = x.DueDate,
+                                                    Duration = (x.DueDate - DateTime.Now).TotalDays,
+                                                }).ToList();
+                var result = _sieve.Apply(sieveModel, overdueBooks.AsQueryable());
+                _iLogger.LogInformation($"Data has been fetched. with data");
+
+                return new APIResponses()
+                {
+                    Messages = "Books available.",
+                    Data = result.Cast<object>().ToList(),
+                };
+
+            }
+            catch (Exception ex)
+            {
+                throw ErrorConstant.BAD_REQUEST;
+            }
+        }
+
 
         public async Task<MessageDto> CreateOrUpdateBorrowBook(BorrowBookRequest model)
         {
